@@ -1,6 +1,6 @@
-# text-mesh-transformer
+# Eco TextMeshPro transformer for web
 
-[![text-mesh-transformer](https://circleci.com/gh/ayecue/text-mesh-transformer.svg?style=svg)](https://circleci.com/gh/ayecue/text-mesh-transformer)
+[![Transformer Package CI](https://github.com/StrangeLoopGames/eco-text-mesh-transformer/actions/workflows/ci.yml/badge.svg)](https://github.com/StrangeLoopGames/eco-text-mesh-transformer/actions/workflows/ci.yml)
 
 # Install
 
