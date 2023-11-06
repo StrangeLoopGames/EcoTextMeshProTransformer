@@ -1,31 +1,63 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
+# Primary CI workflow for Eco's web TextMeshPro transformer package
 name: Transformer Package CI
 
+# specify when the workflow should be triggered.
+# In this case, it runs on every push and pull request to the "main" branch.
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
 jobs:
+  # Build and verify our package through tests
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        # This creates a matrix of Node.js versions to test against.
+        # It will run the job with Node.js 14.x, 16.x, and 18.x.
 
     steps:
     - uses: actions/checkout@v3
+
+    # Setup up the Node.js environment based on the specified version.
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+        # The Node.js version is determined by the matrix defined above.
         cache: 'npm'
+        # It caches npm packages for faster builds in the future.
+
+    # Instlal required dependencies and run the build script
     - run: npm ci
     - run: npm run build --if-present
+
+    # Run the project's tests
     - run: npm test
+
+  # Publish our package to Node's npm 
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    # It also runs on the latest version of Ubuntu.
+
+    steps:
+      - uses: actions/checkout@v3
+
+     # Setup up the Node.js environment based on the specified version.
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+        # This sets up Node.js version 16 and specifies the NPM registry URL.
+        # It's used for publishing the package to npmjs.org.
+
+      # Install required dependencies and publish our package to npm
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          # It sets the NODE_AUTH_TOKEN environment variable with a secret value.
+          # This token is used for authentication when publishing the package.
