@@ -1,26 +1,26 @@
 {
-    "name": "text-mesh-transformer",
+    "name": "eco-text-mesh-transformer",
     "version": "1.3.3",
-    "description": "Transformer for TextMesh Rich Text tags",
-    "homepage": "https://github.com/ayecue/text-mesh-transformer",
+    "description": "Transformer for Eco's TextMeshPro tags",
+    "homepage": "https://github.com/StrangeLoopGames/EcoTextMeshProTransformer",
     "main": "dist/index",
     "typings": "dist/index",
     "repository": {
         "type": "git",
-        "url": "git@github.com:ayecue/text-mesh-transformer.git"
+        "url": "git@github.com:StrangeLoopGames/EcoTextMeshProTransformer.git"
     },
     "author": {
-        "name": "ayecue",
-        "email": "soerenwehmeier@googlemail.com"
+        "name": "Strange Loop Games",
+        "email": "support@strangeloopgames.com"
     },
     "licenses": [
         {
             "type": "MIT",
-            "url": "https://github.com/ayecue/text-mesh-transformer/blob/master/LICENSE-MIT"
+            "url": "https://github.com/StrangeLoopGames/EcoTextMeshProTransformer/blob/master/LICENSE-MIT"
         }
     ],
     "bugs": {
-        "url": "https://github.com/ayecue/text-mesh-transformer/issues"
+        "url": "https://github.com/StrangeLoopGames/EcoTextMeshProTransformer/issues"
     },
     "scripts": {
         "prepublishOnly": "npm run build",
