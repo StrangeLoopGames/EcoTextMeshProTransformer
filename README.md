@@ -5,7 +5,7 @@
 # Install
 
 ```
-npm i text-mesh-transformer
+npm i eco-text-mesh-transformer
 ```
 
 # Description
